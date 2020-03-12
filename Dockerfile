@@ -12,3 +12,6 @@ RUN apt-get update \
  && docker-php-ext-install -j$(nproc) mysqli zip gd intl xmlrpc soap opcache \
  && apt-get clean \
  && rm -rf /var/lib/apt/lists/*
+
+RUN mv "$PHP_INI_DIR/php.ini-production" "$PHP_INI_DIR/php.ini"
+COPY moodle.ini $PHP_INI_DIR/conf.d/
